@@ -1,7 +1,6 @@
 import java.util.Random;
 
 
-
 public class Malla {
 	
 	private static Random rnd;
@@ -25,23 +24,45 @@ public class Malla {
 		int matriz[][] = new int [nf][nc];
 		iniciaracero(matriz, nf, nc);
 		meterObstaculos(matriz, rnd);
+		inicializarFI(matriz, rnd);
 
         this.matriz = matriz;
 		
 	}	
 
-	protected void iniciaracero(int matriz[][], int nf, int nc){
+	private void iniciaracero(int matriz[][], int nf, int nc){ ///private
 		for(int i=0; i<nf; i++){
-			for(int j=0; j<nc; i++){
+			for(int j=0; j<nc; j++){
 				matriz[i][j] = 0;
 			}
 		}
 	}
-	
-	
-	protected void meterObstaculos(int [][] matriz, Random rnd){
+
+	private void inicializarFI (int [][] matriz, Random rnd){
+		int ii, ij, fi, fj;
+		do{ 
+			ii = rnd.nextInt(numfilas);
+			ij = rnd.nextInt(numColumnas);
+			
+			if (matriz[ii][ij] != 1){
+				posInii = ii;
+				posInij = ij;
+			}
+		}while(matriz[ii][ij] == 1);
+
+		do{
+			fi = rnd.nextInt(numfilas);
+			fj = rnd.nextInt(numColumnas);
+			if (matriz[fi][fj] != 1){
+				posFini = fi;
+				posFinj = fj;
+			}
+		}while(matriz[fi][fj] == 1);
+
+	}
+
+	private void meterObstaculos(int [][] matriz, Random rnd){ ///private y cambiar nombre
  		int counter = 0;
-    	int posIi, posIj, posFi, posFj;
 	
 		while (counter < numObstaculos){
 			 int lugarfila = rnd.nextInt(numfilas);
@@ -52,23 +73,6 @@ public class Malla {
 				counter++;
 			 }
 		}
-
-
-		int ii, ij, fi, fj;
-		do{
-			ii = rnd.nextInt(numfilas);
-			ij = rnd.nextInt(numColumnas);
-			fi = rnd.nextInt(numfilas);
-			fj = rnd.nextInt(numColumnas);
-			if ((matriz[ii][ij] != 1) && (matriz[fi][fj] != 1)){
-				posInii = ii;
-				posInij = ij;
-				posFini = fi;
-				posFinj = fj;
-			}
-		}while((matriz[ii][ij] == 1) || (matriz[fi][fj] == 1));
-
-        
 	}
 
     public void ver (Malla a) {

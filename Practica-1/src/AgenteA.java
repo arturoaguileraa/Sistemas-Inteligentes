@@ -90,10 +90,4 @@ public class AgenteA{
 		return 0;
 	}
 	
-	
-	
-	
-	
-	
-	
 }
