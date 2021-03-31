@@ -61,6 +61,10 @@ public class AgenteA{
 		return null;		 //la busqueda termina con fracaso
 	}
 	
+
+
+
+
 	ArrayList<Estado> recuperaSolucion(Nodo n, Arbol<Estado> arbol){
 		ArrayList<Estado> solucion = new ArrayList<Estado>();
 		

@@ -6,7 +6,7 @@ import java.util.Random;
 public class Malla {
 	
 	private static Random rnd;
-	private int numfilas;
+	private int numFilas;
 	private int numColumnas;
 	private int numObstaculos;
 	private int [][] matriz;
@@ -19,7 +19,7 @@ public class Malla {
 	public Malla (int seed, int nf,int  nc, int nObs) {
 		
 		rnd = new Random(seed);
-		numfilas = nf;
+		numFilas = nf;
 		numColumnas = nc;
 		numObstaculos = nObs;
 		
@@ -43,7 +43,7 @@ public class Malla {
 	private void inicializarFI (int [][] matriz, Random rnd){
 		int ii, ij, fi, fj;
 		do{ 
-			ii = rnd.nextInt(numfilas);
+			ii = rnd.nextInt(numFilas);
 			ij = rnd.nextInt(numColumnas);
 			
 			if (matriz[ii][ij] != 1){
@@ -53,7 +53,7 @@ public class Malla {
 		}while(matriz[ii][ij] == 1);
 
 		do{
-			fi = rnd.nextInt(numfilas);
+			fi = rnd.nextInt(numFilas);
 			fj = rnd.nextInt(numColumnas);
 			if (matriz[fi][fj] != 1){
 				posFini = fi;
@@ -67,7 +67,7 @@ public class Malla {
  		int counter = 0;
 	
 		while (counter < numObstaculos){
-			 int lugarfila = rnd.nextInt(numfilas);
+			 int lugarfila = rnd.nextInt(numFilas);
 			 int lugarcolumna = rnd.nextInt(numColumnas);
 
 			 if(matriz[lugarfila][lugarcolumna]!=1){
@@ -77,16 +77,16 @@ public class Malla {
 		}
 	}
 
-    public void ver (Malla a) {
-		System.out.println("Posicion inicial: (" + a.posInii + ", " + a.posInij + ")");
-		System.out.println("Posicion final: (" + a.posFini + ", " + a.posFinj + ")");
+    public void ver () {
+		System.out.println("Posicion inicial: (" + posInii + ", " + posInij + ")");
+		System.out.println("Posicion final: (" + posFini + ", " + posFinj + ")");
 		
 		System.out.println("Malla: ");
 		System.out.println();
-		for(int i=0; i < a.numfilas; i++){
-			for(int j=0; j < a.numColumnas; j++){
+		for(int i=0; i < numFilas; i++){
+			for(int j=0; j < numColumnas; j++){
 				
-				System.out.println(a.matriz[i][j] + " ");
+				System.out.println(matriz[i][j] + " ");
 			}
 			System.out.println();
 		}
@@ -108,6 +108,14 @@ public class Malla {
 		posFin[0] = posFini;
 		posFin[1] = posFinj;
 		return posFin;
+	}
+
+	public boolean equals(Malla a){
+		return (this.getMalla().equals(a.getMalla()))&&(this.getposIni().equals(a.getposIni()))&&(this.getposFin().equals(a.getposFin()));
+	}
+
+	public int hashCode(){
+		return Integer.hashCode(numFilas) + Integer.hashCode(numColumnas) + Integer.hashCode(numObstaculos);
 	}
 
 }
