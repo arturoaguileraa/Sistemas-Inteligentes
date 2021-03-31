@@ -73,8 +73,8 @@ public class EstadoMalla implements Estado {
 		return (i==estado2.i)&&(estado2.j==j)&&(malla.equals(estado2.malla));
 	}
 
-	public @Override
-	public int hashCode() {
+	@Override
+	public int hashCode(){
 		return malla.hashCode() + Integer.hashCode(i) + Integer.hashCode(j);
 	}
 
