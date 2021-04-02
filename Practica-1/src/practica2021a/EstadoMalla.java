@@ -95,6 +95,5 @@ public class EstadoMalla implements Estado {
 	@Override
 	public void ver() {
 		System.out.print("Posicion actual: (" + this.i + ", " + this.j + ")\n");
-		malla.ver();
 	}
 }
