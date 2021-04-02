@@ -1,8 +1,7 @@
-package practica1;
+package practica2021a;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.math.*;
 
 /**
  * @author L.Mandow 
@@ -24,9 +23,8 @@ public class EstadoMalla implements Estado {
 	}
 
 	@Override
-	public List<? extends Estado> calculaSucesores(Malla m) {
+	public List<? extends Estado> calculaSucesores() {
 		EstadoMalla estadoFuturo;
-		int[][] matrizMalla = malla.getMalla();
 		List<EstadoMalla> res = new ArrayList<>(4);
 	
 
@@ -57,8 +55,20 @@ public class EstadoMalla implements Estado {
 	
 	@Override
 	public int coste(Estado e2) {
-		EstadoMalla estado2 = (EstadoMalla) e2;
-		
+		return 1;
+		/*
+				EstadoMalla es2 = (EstadoMalla) e2;
+		if (es2.coordI() == this.i && es2.coordJ() == this.j) {
+			return 0;
+		} else {
+			List<? extends Estado> posiblesCaminos = this.calculaSucesores();
+			if (posiblesCaminos.size() == 0) {
+				return -1;
+			} else {
+				List<Integer> posiblesCostes = new ArrayList<>();
+			}
+		} 
+		*/
 	}
 
 	@Override
@@ -68,9 +78,13 @@ public class EstadoMalla implements Estado {
 	}
 
 	@Override
-	public boolean equals(Estado e2) {
-		EstadoMalla estado2 = (EstadoMalla) e2;
-		return (i==estado2.i)&&(estado2.j==j)&&(malla.equals(estado2.malla));
+	public boolean equals(Object e2) {
+		boolean res = false;
+		if (e2 instanceof EstadoMalla) {
+			EstadoMalla estado2 = (EstadoMalla) e2;
+			res = (i==estado2.i) && (estado2.j==j) && (malla.equals(estado2.malla));
+		}
+		return res;
 	}
 
 	@Override
@@ -82,5 +96,5 @@ public class EstadoMalla implements Estado {
 	public void ver() {
 		System.out.print("Posicion actual: (" + this.i + ", " + this.j + ")\n");
 		malla.ver();
-	}	
+	}
 }

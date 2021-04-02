@@ -1,4 +1,4 @@
-package practica1;
+package practica2021a;
 
 import java.util.Random;
 
