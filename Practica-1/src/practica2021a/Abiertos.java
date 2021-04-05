@@ -7,7 +7,7 @@ public abstract class Abiertos<E extends Estado> {
 	public class NodoAB implements Comparable<NodoAB>
 
 	{
-		private int f;      //prioridad (estimaci�n de coste)
+		private int f;      //prioridad (estimación de coste)
 		private E estado;   //estado
 
 

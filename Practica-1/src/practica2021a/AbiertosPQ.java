@@ -3,10 +3,10 @@ package practica2021a;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
-public class AbiertosPriorityQueue extends Abiertos {
+public class AbiertosPQ<E extends Estado> extends Abiertos<Estado> {
     private PriorityQueue<NodoAB> nodos;
 
-    public AbiertosPriorityQueue() {
+    public AbiertosPQ() {
         nodos = new PriorityQueue<>();
     }
 
@@ -17,7 +17,6 @@ public class AbiertosPriorityQueue extends Abiertos {
 
     @Override
     public void offer(int f, Estado e) {
-        int i=0;
         NodoAB newNodo = new NodoAB(f, e);
         nodos.add(newNodo);
     }

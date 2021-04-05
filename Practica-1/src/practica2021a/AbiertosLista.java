@@ -3,10 +3,10 @@ package practica2021a;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbiertosList extends Abiertos {
+public class AbiertosLista<E extends Estado> extends Abiertos<Estado> {
     private List<NodoAB> nodos;
 
-    public AbiertosList() {
+    public AbiertosLista() {
         nodos = new ArrayList<>();
     }
 
