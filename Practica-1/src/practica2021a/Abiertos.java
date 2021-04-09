@@ -26,7 +26,7 @@ public abstract class Abiertos<E extends Estado> {
 
 		/**
 		 * Orden natural por valor creciente de f. 
-		 * Este m�todo es importante para el m�todo offer de Abiertos.
+		 * Este metodo es importante para el metodo offer de Abiertos.
 		 */
 		@Override
 		public int compareTo(Abiertos<E>.NodoAB n) {
@@ -34,10 +34,10 @@ public abstract class Abiertos<E extends Estado> {
 		}
 
 		/**
-		 * M�todo generado autom�ticamente con Eclipse
+		 * Metodo generado automaticamente con Eclipse
 		 * Dos nodos son iguales si comparten el mismo estado, independientemente
 		 * de los otros valores.
-		 * Este m�todo es importante para el m�todo remove de Abiertos.
+		 * Este metodo es importante para el metodo remove de Abiertos.
 		 */
 
 		@Override
@@ -61,7 +61,7 @@ public abstract class Abiertos<E extends Estado> {
 
 
 	/**
-	 * @return true si la lista est� vac�a, false en otro caso.
+	 * @return true si la lista esta vacia, false en otro caso.
 	 */
 	public abstract boolean isEmpty();
 
@@ -71,7 +71,7 @@ public abstract class Abiertos<E extends Estado> {
 	public abstract void offer(int f, E e);
 	
 	/**
-	 * @return El primer estado de la lista, borr�ndolo de la misma.
+	 * @return El primer estado de la lista, borrandolo de la misma.
 	 */
 	public abstract E poll();
 
@@ -81,7 +81,7 @@ public abstract class Abiertos<E extends Estado> {
 	public abstract void remove (E e);
 		
 	/**
-	 * @return n�mero de nodos en la lista Abiertos.
+	 * @return numero de nodos en la lista Abiertos.
 	 */
 	public abstract int size();
 

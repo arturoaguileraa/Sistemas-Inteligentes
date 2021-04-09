@@ -1,4 +1,4 @@
-package practica2021a;
+ package practica2021a;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,10 +60,6 @@ public class AgenteA{
 		
 		return null;		 //la busqueda termina con fracaso
 	}
-	
-
-
-
 
 	ArrayList<Estado> recuperaSolucion(Nodo n, Arbol<Estado> arbol){
 		ArrayList<Estado> solucion = new ArrayList<Estado>();
@@ -76,24 +72,6 @@ public class AgenteA{
 		}//while
 		
 		return solucion;
-	}
-	public List <Estado> calculaSucesores (List <Estado> lista){
-		return null;
-	}
-	public int coste(Estado e2) {
-		return 0;
-	}
-	public int h (Estado objetivo) {
-		return 0;
-	}
-	public void ver() {
-		
-	}
-	public boolean equals(Object obj) {
-		return true;
-	}
-	public int hashCode() {
-		return 0;
 	}
 	
 }

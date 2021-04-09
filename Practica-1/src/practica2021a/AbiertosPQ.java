@@ -9,7 +9,7 @@ public class AbiertosPQ<E extends Estado> extends Abiertos<Estado> {
     public AbiertosPQ() {
         nodos = new PriorityQueue<>();
     }
-
+    
     @Override
     public boolean isEmpty() {
         return nodos.isEmpty();
@@ -28,16 +28,14 @@ public class AbiertosPQ<E extends Estado> extends Abiertos<Estado> {
 
     @Override
     public void remove(Estado e2) {
-
-    PriorityQueue<NodoAB> placeholder = new PriorityQueue<>();
-    while (!nodos.isEmpty()){
-       NodoAB node = nodos.poll();
-        if(!node.getEstado().equals(e2)){
-            placeholder.add(node);
-        }
-
-    }
-    nodos = placeholder;
+        PriorityQueue<NodoAB> placeholder = new PriorityQueue<>();
+        while (!nodos.isEmpty()){
+        NodoAB node = nodos.poll();
+            if(!node.getEstado().equals(e2)){
+                placeholder.add(node);
+            }
+        } 
+        nodos = placeholder;
     }
 
     @Override
