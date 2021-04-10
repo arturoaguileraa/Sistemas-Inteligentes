@@ -1,41 +1,38 @@
- package practica2021a;
+package practica2021a;
 
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class ArbolHM<E extends Estado> extends Arbol<Estado> {
-    private HashMap<Nodo<EstadoMalla>, EstadoMalla> mapa;
+    private HashMap<EstadoMalla, Nodo<EstadoMalla>> mapa;
 
     @Override
     public void put(Nodo<EstadoMalla> nodo) {
-        mapa.put(nodo, nodo.getEstado());
+        mapa.put(nodo.getEstado(), nodo);
     }
 
     @Override
     public Nodo<EstadoMalla> get(Estado estado) {
         boolean encontrado = false;
-        Iterator<Nodo<EstadoMalla>> it = mapa.keySet().iterator();
-        Nodo <EstadoMalla> nodo = it.next();
+        Iterator<EstadoMalla> it = mapa.keySet().iterator();
+        EstadoMalla sig = it.next();
         while(it.hasNext() && !encontrado){
-            if (nodo.getEstado().equals(estado)){
+            if (sig.equals(estado)){
                 encontrado = true;
             }else{
-                 nodo = it.next();
+                 sig = it.next();
             }
         }
-        return encontrado? nodo:null;
+        return encontrado? mapa.get(sig):null;
     }
 
     @Override
     public boolean containsKey(Estado estado) {
         boolean encontrado = false;
-        Iterator<Nodo<EstadoMalla>> it = mapa.keySet().iterator();
-        Nodo <EstadoMalla> nodo = it.next();
+        Iterator<EstadoMalla> it = mapa.keySet().iterator();
         while(it.hasNext() && !encontrado){
-            if (nodo.getEstado().equals(estado)){
+            if (it.next().equals(estado)){
                 encontrado = true;
-            }else{
-                 nodo = it.next();
             }
         }
         return encontrado;
@@ -43,13 +40,23 @@ public class ArbolHM<E extends Estado> extends Arbol<Estado> {
 
     @Override
     public void ver() {
+        /*
+        System.out.println("HashMap: ");   
+        System.out.println(mapa.toString()); //Aquí creo que no expulsaría bien ni el toString del Estado malla ni el del nodo
+        */
+        
         System.out.print("HashMap: [  ");
-        Iterator<Nodo<EstadoMalla>> it = mapa.keySet().iterator();
+        Iterator<EstadoMalla> it = mapa.keySet().iterator();
+        EstadoMalla sig = it.next();
+
+        System.out.print("(" + sig.toString() + " ~ " + mapa.get(sig).toString() + ")");
         while(it.hasNext()){
-            System.out.print(it.next() + " ~ " + it.next().getEstado() + "  ");
+            sig = it.next();
+            System.out.print(", (" + sig.toString() + " ~ " + mapa.get(sig).toString() + ")");
         }
         
-        System.out.print("] \n");
+        System.out.print("] \n"); 
+        
     }
     
 } 

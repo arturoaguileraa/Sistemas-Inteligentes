@@ -18,7 +18,7 @@ public class ArbolL<E extends Estado> extends Arbol<Estado> {
         ListIterator<Nodo<EstadoMalla>> it = lista.listIterator();
         Nodo<EstadoMalla> nodo = it.next();
         while((it.hasNext()) && (encontrado == false)){
-            if (estado.equals(it.next().getEstado())){
+            if (estado.equals(nodo.getEstado())){
                 encontrado = true;
             }else{
                 nodo = it.next();
@@ -42,11 +42,11 @@ public class ArbolL<E extends Estado> extends Arbol<Estado> {
 
     @Override
     public void ver() {
-        System.out.print("List: [ ");
+        System.out.print("List: \n[ ");
         for(Nodo<EstadoMalla> nodo : lista){
-            System.out.print(nodo + " ");
+            System.out.print(nodo.toString() + " ");
         }
-        System.out.print("] \n");
+        System.out.println("]");
 
     }
     
