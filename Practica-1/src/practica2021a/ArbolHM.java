@@ -4,18 +4,25 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class ArbolHM<E extends Estado> extends Arbol<Estado> {
-    private HashMap<EstadoMalla, Nodo<EstadoMalla>> mapa;
+    private HashMap<Estado, Nodo> mapa;
 
-    @Override
-    public void put(Nodo<EstadoMalla> nodo) {
-        mapa.put(nodo.getEstado(), nodo);
+    public ArbolHM(HashMap<Estado, Nodo> m){
+        mapa = m;
+    }
+    public ArbolHM(){
+        mapa = new HashMap<Estado, Nodo>();
     }
 
     @Override
-    public Nodo<EstadoMalla> get(Estado estado) {
+    public void put(Nodo nodo) {
+        mapa.put(nodo.getEstado(),  nodo);
+    }
+
+    @Override
+    public Nodo get(Estado estado) {
         boolean encontrado = false;
-        Iterator<EstadoMalla> it = mapa.keySet().iterator();
-        EstadoMalla sig = it.next();
+        Iterator<Estado> it = mapa.keySet().iterator();
+        Estado sig = it.next();
         while(it.hasNext() && !encontrado){
             if (sig.equals(estado)){
                 encontrado = true;
@@ -29,7 +36,7 @@ public class ArbolHM<E extends Estado> extends Arbol<Estado> {
     @Override
     public boolean containsKey(Estado estado) {
         boolean encontrado = false;
-        Iterator<EstadoMalla> it = mapa.keySet().iterator();
+        Iterator<Estado> it = mapa.keySet().iterator();
         while(it.hasNext() && !encontrado){
             if (it.next().equals(estado)){
                 encontrado = true;
@@ -46,8 +53,8 @@ public class ArbolHM<E extends Estado> extends Arbol<Estado> {
         */
         
         System.out.print("HashMap: [  ");
-        Iterator<EstadoMalla> it = mapa.keySet().iterator();
-        EstadoMalla sig = it.next();
+        Iterator<Estado> it = mapa.keySet().iterator();
+        Estado sig = it.next();
 
         System.out.print("(" + sig.toString() + " ~ " + mapa.get(sig).toString() + ")");
         while(it.hasNext()){

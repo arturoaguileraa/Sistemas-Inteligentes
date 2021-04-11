@@ -77,7 +77,7 @@ public class Malla {
 		}
 	}
 
-    public void ver () {
+    public void ver () {  //aquui falta incluir en la malla de forma visual las posiciones inicial y final
 		System.out.println("Posicion inicial: (" + posInii + ", " + posInij + ")");
 		System.out.println("Posicion final: (" + posFini + ", " + posFinj + ")");
 		
@@ -86,7 +86,7 @@ public class Malla {
 		for(int i=0; i < numFilas; i++){
 			for(int j=0; j < numColumnas; j++){
 				
-				System.out.println(matriz[i][j] + " ");
+				System.out.print(matriz[i][j] + " ");	
 			}
 			System.out.println();
 		}

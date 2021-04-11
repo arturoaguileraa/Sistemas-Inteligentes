@@ -4,19 +4,26 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class ArbolL<E extends Estado> extends Arbol<Estado> {
-    private LinkedList<Nodo<EstadoMalla>> lista;
+    private LinkedList<Nodo> lista;
 
+    public ArbolL(LinkedList<Nodo> l){
+        lista = l;
+    }
+    public ArbolL(){
+        lista = new LinkedList<>();
+    }
+    
     @Override
-    public void put(Nodo<EstadoMalla> nodo){
+    public void put(Nodo nodo){
         lista.addLast(nodo);
     }
 
     @Override
-    public Nodo<EstadoMalla> get(Estado estado) {
-        
+    public Nodo get(Estado estado) {
+
         boolean encontrado = false;
-        ListIterator<Nodo<EstadoMalla>> it = lista.listIterator();
-        Nodo<EstadoMalla> nodo = it.next();
+        ListIterator<Nodo> it = lista.listIterator();
+        Nodo nodo = it.next();
         while((it.hasNext()) && (encontrado == false)){
             if (estado.equals(nodo.getEstado())){
                 encontrado = true;
@@ -30,7 +37,7 @@ public class ArbolL<E extends Estado> extends Arbol<Estado> {
     @Override
     public boolean containsKey(Estado estado) {
         boolean encontrado = false;
-        ListIterator<Nodo<EstadoMalla>> it = lista.listIterator();
+        ListIterator<Nodo> it = lista.listIterator();
 
         while((it.hasNext()) && (encontrado == false)){
             if (estado.equals(it.next().getEstado())){
@@ -43,7 +50,7 @@ public class ArbolL<E extends Estado> extends Arbol<Estado> {
     @Override
     public void ver() {
         System.out.print("List: \n[ ");
-        for(Nodo<EstadoMalla> nodo : lista){
+        for(Nodo nodo : lista){
             System.out.print(nodo.toString() + " ");
         }
         System.out.println("]");
