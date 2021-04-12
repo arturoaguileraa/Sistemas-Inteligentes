@@ -17,9 +17,9 @@ public class EstadoMalla implements Estado {
 	private int j;
 
 	public EstadoMalla(Malla malla, int i, int j) {
-		this.malla = malla;
 		this.i = i;
-		this.j = j;		
+		this.j = j;
+		this.malla = malla;
 	}
 
 	@Override
@@ -72,6 +72,14 @@ public class EstadoMalla implements Estado {
 			res = (i==estado2.i) && (estado2.j==j);
 		}
 		return res;
+	}
+
+	public int getI() {
+		return i;
+	}
+
+	public int getJ() {
+		return j;
 	}
 
 	@Override
