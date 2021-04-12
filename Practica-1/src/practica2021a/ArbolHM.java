@@ -7,7 +7,7 @@ public class ArbolHM<E extends Estado> extends Arbol<Estado> {
     private HashMap<Estado, Nodo> mapa;
 
     public ArbolHM(HashMap<Estado, Nodo> m){
-        mapa = m;
+        mapa = m; 
     }
     public ArbolHM(){
         mapa = new HashMap<Estado, Nodo>();
@@ -22,15 +22,14 @@ public class ArbolHM<E extends Estado> extends Arbol<Estado> {
     public Nodo get(Estado estado) {
         boolean encontrado = false;
         Iterator<Estado> it = mapa.keySet().iterator();
-        Estado sig = it.next();
+        Estado sig = null;
         while(it.hasNext() && !encontrado){
+            sig = it.next();
             if (sig.equals(estado)){
                 encontrado = true;
-            }else{
-                 sig = it.next();
             }
         }
-        return encontrado? mapa.get(sig):null;
+        return mapa.get(sig);
     }
 
     @Override
