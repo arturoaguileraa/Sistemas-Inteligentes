@@ -4,78 +4,83 @@ import java.util.Random;
 
 
 public class Malla {
-	
+	public final String OBSTACULO = "X";
+	public final String LIBRE = "O";
+	public final String POSI = "I";
+	public final String POSF = "F";
 	private static Random rnd;
 	private int numFilas;
 	private int numColumnas;
 	private int numObstaculos;
-	private int [][] matriz;
+	private String[][] matriz;
 	private int posInii;
 	private int posInij;
 	private int posFini;
 	private int posFinj;
+	private int semilla;
 	
 	
 	public Malla (int seed, int nf,int  nc, int nObs) {
-		
-		rnd = new Random(seed);
+		semilla = seed;
+		rnd = new Random(semilla);
 		numFilas = nf;
 		numColumnas = nc;
 		numObstaculos = nObs;
 		
-		int matriz[][] = new int [nf][nc];
-		iniciaracero(matriz, nf, nc);
-		meterObstaculos(matriz, rnd);
+		String[][] matriz = new String[nf][nc];
+		iniciarALibre(matriz, nf, nc);
 		inicializarFI(matriz, rnd);
+		meterPosiciones(matriz);
+		meterObstaculos(matriz, rnd);
 
         this.matriz = matriz;
-		
 	}	
 
-	private void iniciaracero(int matriz[][], int nf, int nc){ ///private
+	private void iniciarALibre(String[][] matriz, int nf, int nc){ ///private
 		for(int i=0; i<nf; i++){
 			for(int j=0; j<nc; j++){
-				matriz[i][j] = 0;
+				matriz[i][j] = LIBRE;
 			}
 		}
 	}
 
-	private void inicializarFI (int [][] matriz, Random rnd){
+	private void meterObstaculos(String[][] matriz, Random rnd){ ///private y cambiar nombre
+			int counter = 0;
+		
+			while (counter < numObstaculos){
+				int lugarfila = rnd.nextInt(numFilas);
+				int lugarcolumna = rnd.nextInt(numColumnas);
+
+				if(matriz[lugarfila][lugarcolumna].equals(LIBRE)) {
+					matriz[lugarfila][lugarcolumna] = OBSTACULO;
+					counter++;
+				}
+			}
+	}
+
+	private void inicializarFI (String[][] matriz, Random rnd){
 		int ii, ij, fi, fj;
-		do{ 
-			ii = rnd.nextInt(numFilas);
-			ij = rnd.nextInt(numColumnas);
+		
+		ii = rnd.nextInt(numFilas);
+		ij = rnd.nextInt(numColumnas);
+		if (matriz[ii][ij].equals(LIBRE)){
+			posInii = ii;
+			posInij = ij;
 			
-			if (matriz[ii][ij] != 1){
-				posInii = ii;
-				posInij = ij;
-			}
-		}while(matriz[ii][ij] == 1);
-
-		do{
-			fi = rnd.nextInt(numFilas);
-			fj = rnd.nextInt(numColumnas);
-			if (matriz[fi][fj] != 1){
-				posFini = fi;
-				posFinj = fj;
-			}
-		}while(matriz[fi][fj] == 1);
-
-	}
-
-	private void meterObstaculos(int [][] matriz, Random rnd){ ///private y cambiar nombre
- 		int counter = 0;
-	
-		while (counter < numObstaculos){
-			 int lugarfila = rnd.nextInt(numFilas);
-			 int lugarcolumna = rnd.nextInt(numColumnas);
-
-			 if(matriz[lugarfila][lugarcolumna]!=1){
-        	    matriz[lugarfila][lugarcolumna]=1;
-				counter++;
-			 }
+		}
+		
+		fi = rnd.nextInt(numFilas);
+		fj = rnd.nextInt(numColumnas);
+		if (matriz[fi][fj].equals(LIBRE)){
+			posFini = fi;
+			posFinj = fj;
 		}
 	}
+
+	private void meterPosiciones(String[][] matriz) { //Juanma
+        matriz[posFini][posFinj] = POSF;
+		matriz[posInii][posInij] = POSI;
+    }
 
     public void ver () {  //aquui falta incluir en la malla de forma visual las posiciones inicial y final
 		System.out.println("Posicion inicial: (" + posInii + ", " + posInij + ")");
@@ -92,22 +97,26 @@ public class Malla {
 		}
 	}
 
-	public int[][] getMalla(){
+	public String[][] getMalla(){
 		return matriz;
 	}
 
     public int[] getposIni() {
-		int[] posIni = new int[2];
-		posIni[0] = posInii;
-		posIni[1] = posInij;
+		int[] posIni = new int[] {posInii, posInij};
 		return posIni;
 	}
 
 	public int[] getposFin() {
-		int[] posFin = new int[2];
-		posFin[0] = posFini;
-		posFin[1] = posFinj;
+		int[] posFin = new int[] {posFini, posFinj};
 		return posFin;
+	}
+
+	public int getColumnas(){
+		return numColumnas;
+	}
+
+	public int getFilas() {
+		return numFilas;
 	}
 
 	public boolean equals(Malla a){
@@ -115,7 +124,11 @@ public class Malla {
 	}
 
 	public int hashCode(){
-		return Integer.hashCode(numFilas) + Integer.hashCode(numColumnas) + Integer.hashCode(numObstaculos);
+		return Integer.hashCode(numFilas) + Integer.hashCode(numColumnas) + Integer.hashCode(numObstaculos) + Integer.hashCode(semilla) + 
+		Integer.hashCode(getposIni()[0]) + 	Integer.hashCode(getposIni()[1]) + 	Integer.hashCode(getposFin()[0]) + Integer.hashCode(getposFin()[1]);
+
+
+
 	}
 
 }
