@@ -3,10 +3,10 @@ package practica2021a;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbiertosLista<E extends Estado> extends Abiertos<Estado> {
+public class AbiertosL<E extends Estado> extends Abiertos<Estado> {
     private List<NodoAB> nodos;
 
-    public AbiertosLista() {
+    public AbiertosL() {
         nodos = new ArrayList<>();
     }
 
@@ -22,7 +22,7 @@ public class AbiertosLista<E extends Estado> extends Abiertos<Estado> {
         if (nodos.isEmpty()) {
             nodos.add(newNodo);
         } else {
-            while (newNodo.compareTo(nodos.get(i)) > 0) {
+            while ((i < nodos.size()) && (newNodo.compareTo(nodos.get(i)) > 0)) { // newNodo.getF() - nodos.get(i).getF()
                 i++;
             }
             nodos.add(i, newNodo);
@@ -40,7 +40,7 @@ public class AbiertosLista<E extends Estado> extends Abiertos<Estado> {
     public void remove(Estado e2) {
         boolean found = false;
         int i=0;
-        while (!found && i < nodos.size()) {
+        while ((!found) && (i < nodos.size())) {
             if (nodos.get(i).getEstado().equals(e2)) {
                 found = true;
             } else {
