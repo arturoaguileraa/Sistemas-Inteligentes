@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Malla {
 	public final String OBSTACULO = "X";
-	public final String LIBRE = "O";
+	public final String LIBRE = " ";
 	public final String POSI = "I";
 	public final String POSF = "F";
 	private static Random rnd;
