@@ -48,27 +48,14 @@ public class EstadoMalla implements Estado {
 	}
 	
 	protected boolean esValido(int x, int y){
-		int[][] matrizMalla = malla.getMalla();
-		return ((x<matrizMalla.length) && (y<matrizMalla[0].length) && (matrizMalla[x][y] != 1));
+		String[][] matrizMalla = malla.getMalla();
+		return ((x>=0) && (y>=0) && (x<malla.getFilas()) && (y<malla.getColumnas()) && (!matrizMalla[x][y].equals(malla.OBSTACULO)));
 	}
 
 	
 	@Override
 	public int coste(Estado e2) {
 		return 1;
-		/*
-				EstadoMalla es2 = (EstadoMalla) e2;
-		if (es2.coordI() == this.i && es2.coordJ() == this.j) {
-			return 0;
-		} else {
-			List<? extends Estado> posiblesCaminos = this.calculaSucesores();
-			if (posiblesCaminos.size() == 0) {
-				return -1;
-			} else {
-				List<Integer> posiblesCostes = new ArrayList<>();
-			}
-		} 
-		*/
 	}
 
 	@Override
@@ -82,7 +69,7 @@ public class EstadoMalla implements Estado {
 		boolean res = false;
 		if (e2 instanceof EstadoMalla) {
 			EstadoMalla estado2 = (EstadoMalla) e2;
-			res = (i==estado2.i) && (estado2.j==j) && (malla.equals(estado2.malla));
+			res = (i==estado2.i) && (estado2.j==j);
 		}
 		return res;
 	}
