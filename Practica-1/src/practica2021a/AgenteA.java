@@ -1,6 +1,7 @@
- package practica2021a;
+package practica2021a;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -21,7 +22,7 @@ public class AgenteA{
 	public List<Estado> resuelve(Estado salida, Estado objetivo){
 		
 		Arbol<Estado> arbol = new ArbolL<Estado>();
-		Abiertos<Estado> abiertos = new AbiertosLista<Estado>();
+		Abiertos<Estado> abiertos = new AbiertosL<Estado>();
 
 		Estado e = salida;
 		Nodo n = new Nodo(e, 0, null);
@@ -34,12 +35,12 @@ public class AgenteA{
 			
 			if(e.equals(objetivo)){     //si es el objetivo, terminamos
 				return recuperaSolucion(n, arbol);
-			} else { //generamos los sucesores no repetidos y los añadimos al arbol y a abiertos
+			} else { //generamos los sucesores no repetidos y los a�adimos al �rbol y a abiertos
 				int ge = n.getG();
 				for(Estado e2: e.calculaSucesores()){
 					int nuevoCoste = ge + e.coste(e2);
 					
-					if (!arbol.containsKey(e2)){	//nuevon nodo: simplemente añadimos e2 al arboly a abiertos
+					if (!arbol.containsKey(e2)){	//nuevon nodo: simplemente a�adimos e2 al �rboly a abiertos
 						arbol.put(new Nodo(e2, nuevoCoste, n));
 						abiertos.offer(nuevoCoste + e2.h(objetivo),  e2);
 					} else {
@@ -58,9 +59,9 @@ public class AgenteA{
 			}//if-else
 		}//while
 		
-		return null;		 //la busqueda termina con fracaso
+		return null;		 //la b�squeda termina con fracaso
 	}
-
+	
 	ArrayList<Estado> recuperaSolucion(Nodo n, Arbol<Estado> arbol){
 		ArrayList<Estado> solucion = new ArrayList<Estado>();
 		
@@ -73,5 +74,4 @@ public class AgenteA{
 		
 		return solucion;
 	}
-	
 }
