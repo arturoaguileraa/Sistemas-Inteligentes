@@ -6,10 +6,11 @@ import java.util.ListIterator;
 public class ArbolL<E extends Estado> extends Arbol<Estado> {
     private LinkedList<Nodo> lista;
 
-    public ArbolL(LinkedList<Nodo> l){
+    public ArbolL(LinkedList<Nodo> l) {
         lista = l;
     }
-    public ArbolL(){
+
+    public ArbolL() {
         lista = new LinkedList<>();
     }
     
@@ -20,27 +21,28 @@ public class ArbolL<E extends Estado> extends Arbol<Estado> {
 
     @Override
     public Nodo get(Estado estado) {
-
         boolean encontrado = false;
         ListIterator<Nodo> it = lista.listIterator();
-        Nodo nodo = it.next();
-        while((it.hasNext()) && (encontrado == false)){
+        Nodo nodo = null;
+       
+        while((it.hasNext()) && (!encontrado)){
+            nodo = it.next();
             if (estado.equals(nodo.getEstado())){
                 encontrado = true;
-            }else{
-                nodo = it.next();
             }
         }
-        return encontrado? nodo:null;
+        
+        return nodo;
     }
 
     @Override
     public boolean containsKey(Estado estado) {
         boolean encontrado = false;
         ListIterator<Nodo> it = lista.listIterator();
-
-        while((it.hasNext()) && (encontrado == false)){
-            if (estado.equals(it.next().getEstado())){
+        
+        while((it.hasNext()) && (!encontrado)){
+            Estado es = it.next().getEstado();
+            if (estado.equals(es)) {
                 encontrado = true;
             }
         }
