@@ -20,36 +20,16 @@ public class ArbolHM<E extends Estado> extends Arbol<Estado> {
 
     @Override
     public Nodo get(Estado estado) {
-        boolean encontrado = false;
-        Iterator<Estado> it = mapa.keySet().iterator();
-        Estado sig = null;
-        while(it.hasNext() && !encontrado){
-            sig = it.next();
-            if (sig.equals(estado)){
-                encontrado = true;
-            }
-        }
-        return mapa.get(sig);
+        return mapa.get(estado);
     }
 
     @Override
     public boolean containsKey(Estado estado) {
-        boolean encontrado = false;
-        Iterator<Estado> it = mapa.keySet().iterator();
-        while(it.hasNext() && !encontrado){
-            if (it.next().equals(estado)){
-                encontrado = true;
-            }
-        }
-        return encontrado;
+        return mapa.containsKey(estado);
     }
 
     @Override
     public void ver() {
-        /*
-        System.out.println("HashMap: ");   
-        System.out.println(mapa.toString()); //Aquí creo que no expulsaría bien ni el toString del Estado malla ni el del nodo
-        */
         
         System.out.print("HashMap: [  ");
         Iterator<Estado> it = mapa.keySet().iterator();
